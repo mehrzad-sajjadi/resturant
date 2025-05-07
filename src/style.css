@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "vazir";
+  src: url('./assets/fonts/Vazir-Bold.woff') format("woff") ;
+}
+*{
+  direction: rtl;
+  font-family: "vazir";
+}
+button{
+  cursor: pointer;
+}
