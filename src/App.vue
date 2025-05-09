@@ -171,7 +171,6 @@ const food = ref({
     main_price : 500,
     off : 0
   }
-
 });
 const result = ref(0);
 
