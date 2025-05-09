@@ -1,96 +1,114 @@
 <template>
   <h1>خوش آمدید! لطفا سفارش خود را ثبت نمایید</h1>
   <div class="menu">
+    <!-- burger -->
     <div class="col">
-      <img src="./assets/img/1.jfif" alt="image1" />
+      <img src="./assets/img/1.jfif" />
       <p>
-        <span>قیمت : 1000</span>
+        <span>قیمت اصلی : {{food.burger.main_price}}</span>
         <br />
-        <button @click="food.burger++" class="increase">+</button>
-        <span class="nums">{{ food.burger }}</span>
+        <span v-if="food.burger.off">{{food.burger.off}} % Off</span>
+        <br />
+        <button @click="food.burger.count++" class="increase">+</button>
+        <span  class="nums">{{ food.burger.count }}</span>
         <button
-          @click="food.burger--"
-          :disabled="food.burger === 0"
+          @click="food.burger.count--"
+          :disabled="food.burger.count === 0"
+          class="decrease"
+        >
+          -
+        </button>
+      </p>
+    </div> 
+    <!-- hotdog -->
+    <div class="col">
+      <img src="./assets/img/2.jfif" />
+      <p>
+        <span>قیمت اصلی : {{food.hotdog.main_price}}</span>
+        <br />
+        <span v-if="food.hotdog.off">{{food.hotdog.off}} % Off</span>
+        <br />
+        <button @click="food.hotdog.count++" class="increase">+</button>
+        <span  class="nums">{{ food.hotdog.count }}</span>
+        <button
+          @click="food.hotdog.count--"
+          :disabled="food.hotdog.count === 0"
           class="decrease"
         >
           -
         </button>
       </p>
     </div>
+    <!-- salad -->
     <div class="col">
-      <img src="./assets/img/2.jfif" alt="image1" />
+      <img src="./assets/img/3.jpg"  />
       <p>
-        <span>قیمت : 2000</span>
+        <span>قیمت اصلی : {{food.salad.main_price}}</span>
         <br />
-        <button @click="food.hotdog++" class="increase">+</button>
-        <span class="nums">{{ food.hotdog }}</span>
+        <span v-if="food.salad.off">{{food.salad.off}} % Off</span>
+        <br />
+        <button @click="food.salad.count++" class="increase">+</button>
+        <span  class="nums">{{ food.salad.count }}</span>
         <button
-          @click="food.hotdog--"
-          :disabled="food.hotdog === 0"
+          @click="food.salad.count--"
+          :disabled="food.salad.count === 0"
           class="decrease"
         >
           -
         </button>
       </p>
     </div>
+    <!-- chiken -->
     <div class="col">
-      <img src="./assets/img/3.jpg" alt="image1" />
+      <img src="./assets/img/4.jpg" />
       <p>
-        <span>قیمت : 1500</span>
+        <span>قیمت اصلی : {{food.chiken.main_price}}</span>
         <br />
-        <button @click="food.salad++" class="increase">+</button>
-        <span class="nums">{{ food.salad }}</span>
+        <span v-if="food.chiken.off">{{food.chiken.off}} % Off</span>
+        <br />
+        <button @click="food.chiken.count++" class="increase">+</button>
+        <span  class="nums">{{ food.chiken.count }}</span>
         <button
-          @click="food.salad--"
-          :disabled="food.salad === 0"
+          @click="food.chiken.count--"
+          :disabled="food.chiken.count === 0"
           class="decrease"
         >
           -
         </button>
       </p>
     </div>
+    <!-- pizza -->
     <div class="col">
-      <img src="./assets/img/4.jpg" alt="image1" />
+      <img src="./assets/img/5.jfif"  />
       <p>
-        <span>قیمت : 3000</span>
+        <span>قیمت اصلی : {{food.pizza.main_price}}</span>
         <br />
-        <button @click="food.chiken++" class="increase">+</button>
-        <span class="nums">{{ food.chiken }}</span>
+        <span v-if="food.pizza.off">{{food.pizza.off}} % Off</span>
+        <br />
+        <button @click="food.pizza.count++" class="increase">+</button>
+        <span  class="nums">{{ food.pizza.count }}</span>
         <button
-          @click="food.chiken--"
-          :disabled="food.chiken === 0"
+          @click="food.pizza.count--"
+          :disabled="food.pizza.count === 0"
           class="decrease"
         >
           -
         </button>
       </p>
     </div>
+    <!-- frenchfries -->
     <div class="col">
-      <img src="./assets/img/5.jfif" alt="image1" />
+      <img src="./assets/img/6.jpg" />
       <p>
-        <span>قیمت : 4000</span>
+        <span>قیمت اصلی : {{food.frenchfries.main_price}}</span>
         <br />
-        <button @click="food.pizza++" class="increase">+</button>
-        <span class="nums">{{ food.pizza }}</span>
-        <button
-          @click="food.pizza--"
-          :disabled="food.pizza === 0"
-          class="decrease"
-        >
-          -
-        </button>
-      </p>
-    </div>
-    <div class="col">
-      <img src="./assets/img/6.jpg" alt="image1" />
-      <p>
-        <span>قیمت : 500</span>
+        <span v-if="food.frenchfries.off">{{food.frenchfries.off}} % Off</span>
         <br />
-        <button @click="food.frenchfries++" class="increase">+</button>
-        <span class="nums">{{ food.frenchfries }}</span>
+        <button @click="food.frenchfries.count++" class="increase">+</button>
+        <span  class="nums">{{ food.frenchfries.count }}</span>
         <button
-          @click="food.frenchfries--"
-          :disabled="food.frenchfries === 0"
+          @click="food.frenchfries.count--"
+          :disabled="food.frenchfries.count === 0"
           class="decrease"
         >
           -
@@ -101,27 +119,73 @@
   <div class="order-wrapper">
     <button @click="order" class="order" type="button">ثبت سفارش</button>
   </div>
-  <p v-if="result">
-    جمع کل هزینه ها
-    <br>
-    {{ result }}
+  <p class="result" v-if="result">
+    <div>
+      جمع کل هزینه ها اصلی
+      <br>
+      {{ result }}  
+    </div>
+    <div>
+      جمع کل هزینه ها با تخفیف
+      <br>
+      {{ offPrice }}  
+    </div>
   </p>
 </template>
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed , onBeforeMount } from "vue";
 
-const food = reactive({
-  burger: 0,
-  pizza: 0,
-  salad: 0,
-  hotdog: 0,
-  chiken: 0,
-  frenchfries: 0,
+onBeforeMount(()=>{
+  alert("به رستوران ما خیلی خوش آمدید");
+})
+
+
+const food = ref({
+  burger:{
+    count : 0 ,
+    main_price : 1000,
+    off : 35 
+  },
+  hotdog:{
+    count : 0 ,
+    main_price : 2000,
+    off : 0  
+  },
+  salad:{
+    count : 0 ,
+    main_price : 1500,
+    off : 10
+  },
+  chiken:{
+    count : 0 ,
+    main_price : 3000,
+    off : 0
+  },
+  pizza:{
+    count : 0 ,
+    main_price : 4000,
+    off : 20
+  },
+  frenchfries:{
+    count : 0 ,
+    main_price : 500,
+    off : 0
+  }
+
 });
 const result = ref(0);
+
+const off = reactive({
+  burger: (food.value.burger.main_price*(100 - food.value.burger.off))/100,
+  pizza: (food.value.pizza.main_price*(100 - food.value.pizza.off))/100,
+  salad: (food.value.salad.main_price*(100 - food.value.salad.off))/100,
+})
+
+const offPrice = ref(0);
 const order = computed(() => {
-  result.value = (food.burger*1000) + (food.pizza*4000) + (food.salad*1500) + (food.hotdog*2000) + (food.chiken*3000) + (food.frenchfries*500);
-  return result; 
+  result.value = (food.value.burger.count*1000) + (food.value.pizza.count*4000) + (food.value.salad.count*1500) + (food.value.hotdog.count*2000) + (food.value.chiken.count*3000) + (food.value.frenchfries.count*500);
+  offPrice.value =  (food.value.burger.count * off.burger ) + ( food.value.pizza.count * off.pizza ) + (food.value.salad.count * off.salad ) + (food.value.hotdog.count*2000) + (food.value.chiken.count*3000) + (food.value.frenchfries.count*500);
+  return {result,offPrice}; 
 });
 
 
@@ -190,5 +254,11 @@ img {
     justify-content: center;
     align-items: center;
     margin: auto;
+}
+.result{
+  display: flex;
+  justify-content:space-around ;
+  width: 50%;
+  margin: auto;
 }
 </style>
