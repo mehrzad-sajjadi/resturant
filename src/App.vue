@@ -139,7 +139,7 @@ onBeforeMount(()=>{
     alert("به رستوران ما خیلی خوش آمدید");
 })
 
-const food = ref({
+const food = reactive({
     burger:{
         count : 0 ,
         main_price : 1000,
@@ -172,35 +172,36 @@ const food = ref({
     }
 });
 const result = ref(0);
-    const off = reactive({
-        burger: (food.value.burger.main_price*(100 - food.value.burger.off))/100,
-        hotdog : (food.value.hotdog.main_price*(100 - food.value.hotdog.off))/100,
-        pizza: (food.value.pizza.main_price*(100 - food.value.pizza.off))/100,
-        salad: (food.value.salad.main_price*(100 - food.value.salad.off))/100,
-        chiken: (food.value.chiken.main_price*(100 - food.value.chiken.off))/100,
-        frenchfries: (food.value.frenchfries.main_price*(100 - food.value.frenchfries.off))/100 
-    })
+const offPrice = ref(0);
 
-    const offPrice = ref(0);
-    const order = computed(() => {
-        result.value = 
-            (food.value.burger.count * food.value.burger.main_price) +
-            (food.value.pizza.count * food.value.pizza.main_price) +
-            (food.value.salad.count * food.value.salad.main_price) +
-            (food.value.hotdog.count * food.value.hotdog.main_price) +
-            (food.value.chiken.count * food.value.chiken.main_price) +
-            (food.value.frenchfries.count * food.value.frenchfries.main_price) 
-        ;
-        offPrice.value =  
-            (food.value.burger.count * off.burger) +
-            (food.value.pizza.count * off.pizza) + 
-            (food.value.salad.count * off.salad) + 
-            (food.value.hotdog.count * off.hotdog) + 
-            (food.value.chiken.count * off.chiken) + 
-            (food.value.frenchfries.count *  off.frenchfries)
-        ;
-        return {result,offPrice}; 
-    });
+const off = reactive({
+    burger: (food.burger.main_price*(100 - food.burger.off))/100,
+    hotdog : (food.hotdog.main_price*(100 - food.hotdog.off))/100,
+    pizza: (food.pizza.main_price*(100 - food.pizza.off))/100,
+    salad: (food.salad.main_price*(100 - food.salad.off))/100,
+    chiken: (food.chiken.main_price*(100 - food.chiken.off))/100,
+    frenchfries: (food.frenchfries.main_price*(100 - food.frenchfries.off))/100 
+})
+
+const order = computed(() => {
+    result.value = 
+        (food.burger.count * food.burger.main_price) +
+        (food.pizza.count * food.pizza.main_price) +
+        (food.salad.count * food.salad.main_price) +
+        (food.hotdog.count * food.hotdog.main_price) +
+        (food.chiken.count * food.chiken.main_price) +
+        (food.frenchfries.count * food.frenchfries.main_price) 
+    ;
+    offPrice.value =  
+        (food.burger.count * off.burger) +
+        (food.pizza.count * off.pizza) + 
+        (food.salad.count * off.salad) + 
+        (food.hotdog.count * off.hotdog) + 
+        (food.chiken.count * off.chiken) + 
+        (food.frenchfries.count *  off.frenchfries)
+    ;
+    return {result,offPrice}; 
+}) ;
 </script>
 <style scoped>
 h1 {
